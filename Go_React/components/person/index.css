@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+.div_person_big{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 89vh;
+}
+.div_person{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.span_person{
+    font-size: 25px;
+    font-family: kaiti;
+}
+.input_person1{
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    font-family: kaiti;
+    font-size: 20px;
+    pointer-events: none;
+}
+.input_person2{
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    font-family: kaiti;
+    font-size: 20px;
+}
+.textArea_person1{
+    resize: none;
+    font-size: 20px;
+    font-family: kaiti;
+}
+.btn_person{
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+}
+.div_person_select{
+    position: absolute;
+    left: 92%;
+    top:3%;
+}
+.select_img:hover{
+    cursor: pointer;
+}
+.select_big_div:hover{
+    cursor: pointer;
+}
+.select_img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 36px;
+}
+.select_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.select_big_div{
+    position: absolute;
+    width: 100px;
+}
+.select_div1{
+    display: none;
+}
+.select_div2{
+    display: block;
+}

@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+.div_recharge_big{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 89vh;
+}
+.div_recharge{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.select_div_Recharge{
+    position: absolute;
+    left: 92%;
+    top:3%;
+}
+.select_img:hover{
+    cursor: pointer;
+}
+.select_big_div:hover{
+    cursor: pointer;
+}
+.select_img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 36px;
+}
+.select_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.select_big_div{
+    position: absolute;
+    width: 100px;
+}
+.select_div1{
+    display: none;
+}
+.select_div2{
+    display: block;
+}

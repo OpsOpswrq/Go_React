@@ -1,0 +1,95 @@
+*{
+    box-sizing: border-box;
+}
+.h1{
+    font-size: 40px;
+    position: relative;
+    left: 2%;
+    width: 300px;
+}
+.div_class1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chart_class1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.show_chart_goods1{
+    position: relative;
+    top: -50px;
+    width: 1000px;
+    height: 300px;
+    margin: 30px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.2);
+}
+.img2{
+    width: 300px;
+    height: 200px;
+    position: relative;
+    left: 2%;
+    top: 18%;
+}
+.span_class1{
+    position: relative;
+    left: 35%;
+    top: -50%;
+    width: 650px;
+    height: 100px;
+    font-family: kaiti;
+    font-size: 22px;
+}
+.btn_group1{
+    width: 500px;
+    position: relative;
+    left: 40%;
+    top: -25%;
+}
+.btn1{
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 40px;
+}
+.sum_class1{
+    position: relative;
+    left: 38%;
+    width: 350px;
+    font-family: kaiti;
+    font-size: 26px;
+}
+.select_img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 36px;
+}
+.select_img:hover{
+    cursor: pointer;
+}
+.select_big_div:hover{
+    cursor: pointer;
+}
+.select_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.select_big_div{
+    position: absolute;
+    width: 100px;
+}
+.select_div1{
+    display: none;
+}
+.select_div2{
+    display: block;
+}
+.select_div_Chart{
+    position: absolute;
+    left: 92%;
+    top:3%;
+}

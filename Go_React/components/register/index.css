@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+.div_class3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 98vh;
+}
+.div_form_class{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+    width: 600px;
+    height: 450px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.5);
+}
+.label_class3{
+    font-size: 24px;
+    font-family: kaiti;
+}
+.input_class3{
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.btn5{
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+    left: 30%;
+    background-color: lightblue;
+}

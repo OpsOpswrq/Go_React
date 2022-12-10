@@ -1,0 +1,234 @@
+-- 网上购物商城
+create database db_final;
+
+use db_final;
+-- 购物商城商品类
+create table goods(
+	`id` int primary key auto_increment,
+	`name` varchar(30),
+	`price` decimal(8,2),
+	`left` int(30),
+	`img` varchar(50),
+	`decription` varchar(30)
+)charset='utf8';
+-- 购物商城用户类
+create table users(
+	`id` int primary key auto_increment,
+	`username` varchar(30),
+	`password` varchar(30),
+	`phone` varchar(30),
+	`money` decimal(10,2),
+	`email` varchar(30),
+	`address` varchar(60)
+)charset='utf8';
+-- 购物商城购物车
+create table charts(
+	`id` int primary key auto_increment,
+	`gid` int,
+	`uid` int,
+	`date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`amount` int,
+	`isavail` int,
+	constraint foreign key (gid) references goods(id),
+	constraint foreign key (uid) references users(id)
+)charset='utf8';
+-- 订单信息
+create table sorder(
+	`id` int primary key auto_increment,
+	`uid` int,
+	`phone` varchar(20),
+	`remark` varchar(20),  -- 配送信息
+	`date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`total` decimal(8,2),  -- 总金额
+	`post` varchar(20),
+	`address` varchar(20),
+	`status` int,
+	CONSTRAINT foreign key (uid) REFERENCES users(id)
+)charset='utf8';
+-- 每日更新商品信息
+-- 触发器，订单成功了，自动将商品数减去
+-- 账户金额不够自动回滚
+-- 上传商品信息
+-- 触发器
+create table sorderbefore(
+	`id` int primary key auto_increment,
+	`gid` int,
+	`uid` int,
+	`date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`amount` int,
+	`isavail` int,
+	constraint foreign key (gid) references goods(id),
+	constraint foreign key (uid) references users(id)
+)charset='utf8';
+
+
+drop trigger insert_change_left;
+drop trigger update1_change_left;
+drop trigger delete_change_left;
+
+delimiter //
+create trigger insert_change_left
+after insert on sorderbefore
+for each row 
+begin
+	declare left1 int;
+	declare gid1 int;
+	set gid1 = new.gid;
+	select `left` into left1 from goods where id = gid1;
+	update goods set `left` = left1 - 1 where id = gid1;
+end //
+delimiter ;
+
+delimiter //
+create trigger update_change_left
+after update on sorderbefore
+for each row 
+begin
+	declare left1 int;
+	declare gid1 int;
+	declare amount1 int;
+	declare amount2 int;
+	declare remove1 int;
+	set gid1 = new.gid;
+	set amount1 = new.amount;
+	set amount2 = old.amount;
+	select `left` into left1 from goods where id = gid1;
+	set remove1 = left1 + amount2 - amount1;
+	update goods set `left` = remove1 where id = gid1;
+end //
+delimiter ;
+
+delimiter //
+create trigger delete_change_left
+after delete on sorderbefore
+for each row 
+begin
+	declare left1 int;
+	declare gid1 int;
+	declare amount1 int;
+	declare remove1 int;
+	set gid1 = old.gid;
+	set amount1 = old.amount;
+	select `left` into left1 from goods where id = gid1;
+	set remove1 = left1 + amount1;
+	update goods set `left` = remove1 where id = gid1;
+end //
+delimiter ;
+
+drop trigger delete_sorderbefore;
+drop trigger insert_sorderbefore;
+drop trigger update_sorderbefore;
+
+delimiter //
+create trigger insert_sorderbefore
+after insert on charts
+for each row
+begin
+	declare uid1 int;
+	declare gid1 int;
+	set uid1 = new.uid;
+	set gid1 = new.gid;
+	insert into sorderbefores(gid,uid,amount,isavail) values(gid1,uid1,1,1);
+end //
+delimiter ;
+
+delimiter //
+create trigger update_sorderbefore
+after update on charts
+for each row
+begin
+	declare uid1 int;
+	declare gid1 int;
+	declare amount1 int;
+	declare amount2 int;
+	declare amount3 int;
+	declare remove1 int;
+	set uid1 = old.uid;
+	set gid1 = old.gid;
+	set amount1 = new.amount;
+	set amount2 = old.amount;
+	select amount into amount3 from sorderbefores where gid = gid1 and uid = uid1;
+	set remove1 = amount3 + amount1 - amount2;
+	update sorderbefores set amount = remove1 where gid = gid1 and uid = uid1;
+end //
+delimiter ;
+
+delimiter //
+create trigger delete_sorderbefore
+after delete on charts
+for each row
+begin
+	declare uid1 int;
+	declare gid1 int;
+	set uid1 = old.uid;
+	set gid1 = old.gid;
+	delete from sorderbefores where gid = gid1 and uid = uid1;
+end //
+delimiter ;
+
+create view user1(id,username,`password`,phone,money,email,address) as select * from users;
+
+set global log_bin_trust_function_creators = 1;
+
+delimiter //
+create function select_amount_by_uid(uid1 int)
+returns decimal(8,2)
+begin
+	return (select money from user1 where id = uid1);
+end //
+delimiter ;
+
+delimiter //
+create trigger insert_sorder
+after insert on sorders
+for each row
+begin
+	declare uid1 int;
+	declare amount1 decimal(8,2);
+	declare amount2 decimal(8,2);
+	set uid1 = new.uid;
+	set amount1 = new.total;
+	select select_amount_by_uid(uid1) into amount2;
+	update users set money = amount2 - amount1 where id = uid1;
+	delete from sorderbefores where uid = uid1;
+end //
+delimiter ;
+
+
+delimiter //
+create procedure select_left_by_gid(in gid1 int,out amount2 int)
+begin
+	select `left` into amount2 from goods where id = gid1;
+end //
+delimiter ;
+
+delimiter //
+create trigger update_goods
+after delete on sorderbefores
+for each row
+begin
+	declare gid1 int;
+	declare amount1 int;
+	declare amount2 int;
+	set gid1 = old.gid;
+	set amount1 = old.amount;
+	call select_left_by_gid(gid1,amount2);
+	update goods set `left` = amount2 - amount1 where id = gid1;
+	if amount2 - amount1 <= 0
+	then 
+	delete from charts where gid = gid1;
+	delete from goods where id = gid1;
+	end if;
+end //
+delimiter ;
+
+SHOW VARIABLES LIKE 'event_scheduler';
+SELECT @@event_scheduler;
+SHOW PROCESSLIST;
+
+
+set global event_scheduler = on;
+create event if not exists update_view
+on schedule every 5 second
+on completion preserve
+do create or replace view user1 as select * from users;

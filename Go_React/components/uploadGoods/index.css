@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+.uploadGoods_class_div_out{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 98vh;
+}
+.uploadGoods_class_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.uploadGoods_label{
+    font-family: kaiti;
+    font-size: 24px;
+}
+.uploadGoods_class_input{
+    width: 280px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+.select_div_uploadGoods{
+    position: absolute;
+    left: 92%;
+    top:3%;
+}
+.select_img:hover{
+    cursor: pointer;
+}
+.select_img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 36px;
+}
+.select_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.select_big_div{
+    position: absolute;
+    width: 100px;
+}
+.select_big_div:hover{
+    cursor: pointer;
+}
+.select_div1{
+    display: none;
+}
+.select_div2{
+    display: block;
+}

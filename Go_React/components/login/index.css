@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+.div_class2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 98vh;
+    margin: 0px;
+}
+.h1_class2{
+    color: black;
+    font-size: 45px;
+}
+.div1_shadow2{
+    background-color: skyblue;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+    border-radius: 10px 10px 10px 01px;
+}
+
+.label_class2{
+    font-size: 25px;
+    font-family: kaiti;
+}
+.input_class2{
+    width: 210px;
+    height: 30px;
+    font-family: kaiti;
+    font-size: 22px;
+    border-radius: 5px;
+}
+.btn2{
+    font-family: kaiti;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    margin-left:50px;
+    margin-right: 50px;
+}

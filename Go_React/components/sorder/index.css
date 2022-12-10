@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+.h1_class3{
+    font-size: 40px;
+    position: relative;
+    left: 1%;
+}
+.goods_details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.goods_one{
+    position: relative;
+    top: -50px;
+    width: 1000px;
+    height: 300px;
+    margin: 30px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.2);
+}
+.img5{
+    width: 300px;
+    height: 200px;
+    position: relative;
+    left: 2%;
+    top: 18%;
+}
+.span_class5{
+    position: relative;
+    left: 35%;
+    top: -45%;
+    width: 650px;
+    height: 100px;
+}
+.span5{
+    font-family: kaiti;
+    font-size: 22px;
+}
+.btn_group2{
+    width: 500px;
+    position: relative;
+    top: 50%;
+}
+.btn7{
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 50px;
+}
+.input_class5{
+    position: relative;
+    width: 300px;
+    height: 500px;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.input_form6{
+    width: 240px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.btn_group3{
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    left: 40%;
+    top:20px;
+}
+.select_div_sorder{
+    position: absolute;
+    left: 92%;
+    top:3%;
+}
